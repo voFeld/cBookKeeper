@@ -6,15 +6,56 @@
 </head>
 <body>
 
-    <form>
-        Username: <input type="text" placeholder="Enter your name" /><br>
-        Email: <input type="email" /><br>
-        Password: <input type="password" /><br>
-        Repeat: <input type="password" /><br>
-        Phone: <input type="number" /><br>
-        Country: <input type="text" /><br>
-        <button type="submit">Submit</button>
-    </form>
+        <!--Form-->
+        <div id="msg"></div>
+        Username: <input type="text" placeholder="Enter your name" id="my_username" /><br>
+        Email: <input type="email" id="my_email" /><br>
+        Password: <input type="password" id="my_password" /><br>
+        Repeat: <input type="password" id="repeat_password" /><br>
+        Phone: <input type="number" id="my_phone" /><br>
+        Country: <input type="text" id="my_country"/><br>
+        <button type="submit" onclick="validation()">Submit</button>
 
+        <!--Form Validation-->
+    <script type="text/javascript">
+        function validation(){
+
+//            Store password Value
+            var passwordElement = document.getElementById("my_password");
+            var passWord = passwordElement.value;
+
+//            Store repeat password value
+            var repeatElement = document.getElementById("repeat_password");
+            var repeat = repeatElement.value;
+
+//            Store country value
+            var countryElement = document.getElementById("my_country");
+            var myCountry = countryElement.value;
+
+//            Store name value
+            var nameElement = document.getElementById("my_username");
+            var myName = nameElement.value;
+
+//            Store phone value
+            var phoneElement = document.getElementById("my_phone");
+            var myPhone = phoneElement.value;
+
+//            If password is longer than 6, and equals to repeat password, and my country is Israel\USA, and the name have no spaces, and phone length is smaller than 15,
+//            add the password to the msg DIV and color it green
+            if(passWord.length > 6 && (passWord === repeat) && ((myCountry === "Israel") || (myCountry === "USA")) && (!myName.includes(" ")) && (myPhone.length < 15)) {
+                document.getElementById('msg').innerHTML = "Your password is: " + passWord;
+                document.getElementById('msg').style.backgroundColor = "green";
+
+//            else, print Error and color it red
+            } else {
+                document.getElementById('msg').innerHTML = "Error!";
+                document.getElementById('msg').style.backgroundColor = "red";
+            }
+
+
+        }
+    </script>
 </body>
 </html>
+
+<!--Add code to validate that the phone number is not longer than 15 digits. Good guess.-->
